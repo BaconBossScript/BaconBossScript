@@ -1,7 +1,7 @@
 if game.PlaceId == 12742233841 then
  
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "BaconBoss | Clicker", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | WinFarm ", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 getgenv().tpPlace = "string"
 
@@ -20,7 +20,7 @@ local TpTab = Window:MakeTab({
 TpTab:AddDropdown({
 	Name = "Select",
 	Default = "1 Win",
-	Options = {"1 Win", "2 Win", "3 Win", "4 Win"},
+	Options = {"1 Win", "2 Win", "3 Win", "4 Win", "5 Win", "6 Win", "7 Win", "8 Win", "9 Win"},
 	Callback = function(Value)
 	    getgenv().tpPlace = Value  
 	end    
@@ -35,8 +35,18 @@ TpTab:AddButton({
          Teleport(game:GetService("Workspace").Wins.LaserStage.CFrame)
         elseif getgenv().tpPlace == "3 Win" then
       	 Teleport(game:GetService("Workspace").Wins.TrussStage.CFrame)
-		elseif getgenv().tpPlace == "4 Win" then
+        elseif getgenv().tpPlace == "4 Win" then
          Teleport(game:GetService("Workspace").Wins.World4.CFrame)
+		elseif getgenv().tpPlace == "5 Win" then
+         Teleport(game:GetService("Workspace").Wins.World5.CFrame)
+        elseif getgenv().tpPlace == "6 Win" then
+         Teleport(game:GetService("Workspace").Wins.World6.CFrame)
+        elseif getgenv().tpPlace == "7 Win" then
+         Teleport(game:GetService("Workspace").Wins.Stage7.CFrame)
+        elseif getgenv().tpPlace == "8 Win" then
+         Teleport(game:GetService("Workspace").Wins.Stage8.CFrame)
+        elseif getgenv().tpPlace == "9 Win" then
+         Teleport(game:GetService("Workspace").Wins.DesertStage.CFrame)
 	    end    
     end
 }) 
