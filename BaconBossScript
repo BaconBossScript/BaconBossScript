@@ -1,1 +1,44 @@
+if game.PlaceId == 12742233841 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss | Clicker", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
+getgenv().tpPlace = "string"
+
+function Teleport(teleportPlace)
+    local player = game.Players.LocalPlayer
+    player.Character.HumanoidRootPart.CFrame = teleportPlace
+end
+
+
+local TpTab = Window:MakeTab({
+	Name = "Win Tp",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+TpTab:AddDropdown({
+	Name = "Select",
+	Default = "1 Win",
+	Options = {"1 Win", "2 Win", "3 Win", "4 Win"},
+	Callback = function(Value)
+	    getgenv().tpPlace = Value  
+	end    
+})
+
+TpTab:AddButton({
+	Name = "Win",
+	Callback = function()
+	    if getgenv().tpPlace == "1 Win" then
+      	Teleport(game:GetService("Workspace").Wins.ConveyorStage.CFrame)
+		elseif getgenv().tpPlace == "2 Win" then
+         Teleport(game:GetService("Workspace").Wins.LaserStage.CFrame)
+        elseif getgenv().tpPlace == "3 Win" then
+      	 Teleport(game:GetService("Workspace").Wins.TrussStage.CFrame)
+		elseif getgenv().tpPlace == "4 Win" then
+         Teleport(game:GetService("Workspace").Wins.World4.CFrame)
+	    end    
+    end
+}) 
+
+end
