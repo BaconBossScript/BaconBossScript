@@ -4,12 +4,19 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | WinFarm ", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 getgenv().tpPlace = "string"
+getgenv().autotp = true
 
 function Teleport(teleportPlace)
     local player = game.Players.LocalPlayer
     player.Character.HumanoidRootPart.CFrame = teleportPlace
 end
 
+function autotp()
+     while getgenv().autotp == true do
+	 Teleport(game:GetService("Workspace").Wins.SteampunkStage.CFrame)
+	 wait(0.1)
+	end
+end
 
 local TpTab = Window:MakeTab({
 	Name = "Win Tp",
@@ -17,10 +24,19 @@ local TpTab = Window:MakeTab({
 	PremiumOnly = false
 })
 
+TpTab:AddToggle({
+	Name = "Auto Best Win",
+	Default = false,
+	Callback = function(Value)
+		getgenv().autotp = Value
+        autotp()
+	end    
+})
+
 TpTab:AddDropdown({
 	Name = "Select",
 	Default = "1 Win",
-	Options = {"1 Win", "2 Win", "3 Win", "4 Win", "5 Win", "6 Win", "7 Win", "8 Win", "9 Win"},
+	Options = {"1 Win", "2 Win", "3 Win", "4 Win", "5 Win", "6 Win", "7 Win", "8 Win", "9 Win", "10 Win",},
 	Callback = function(Value)
 	    getgenv().tpPlace = Value  
 	end    
@@ -47,6 +63,8 @@ TpTab:AddButton({
          Teleport(game:GetService("Workspace").Wins.Stage8.CFrame)
         elseif getgenv().tpPlace == "9 Win" then
          Teleport(game:GetService("Workspace").Wins.DesertStage.CFrame)
+		elseif getgenv().tpPlace == "10 Win" then
+         Teleport(game:GetService("Workspace").Wins.SteampunkStage.CFrame)
 	    end    
     end
 }) 
