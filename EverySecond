@@ -1,10 +1,13 @@
 if game.PlaceId == 12742233841 then
  
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | WinFarm ", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Every Second You Get +1 WalkSpeed ", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
 
 getgenv().tpPlace = "string"
 getgenv().autotp = true
+getgenv().rb = true
+getgenv().spin = true
+getgenv().bspin = true
 
 function Teleport(teleportPlace)
     local player = game.Players.LocalPlayer
@@ -18,11 +21,40 @@ function autotp()
 	end
 end
 
+function rb()
+	 while getgenv().rb == true do
+      game:GetService("ReplicatedStorage").RebirthEvent:FireServer()
+	wait(0.1)
+   end
+end
+
+function spin()
+	 while getgenv().spin == true do
+     game:GetService("ReplicatedStorage").SpinRemote:InvokeServer()
+      wait(0.1)
+   end
+end
+
+function bspin()
+	 while getgenv().bspin == true do
+	 game:GetService("ReplicatedStorage").SpinnerUpdate:FireServer("BuySpin")
+     wait(0.1)
+   end
+end
+
 local TpTab = Window:MakeTab({
-	Name = "Win Tp",
+	Name = "Auto Farm",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
+local otherTab = Window:MakeTab({
+	Name = "Other",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+TpTab:AddLabel("Note: Work Very Well With Tall Avatars")
 
 TpTab:AddToggle({
 	Name = "Auto Best Win",
@@ -30,6 +62,33 @@ TpTab:AddToggle({
 	Callback = function(Value)
 		getgenv().autotp = Value
         autotp()
+	end    
+})
+
+otherTab:AddToggle({
+	Name = "Auto Spin",
+	Default = false,
+	Callback = function(Value)
+		getgenv().spin = Value
+        spin()
+	end    
+})
+
+otherTab:AddToggle({
+	Name = "Auto Buy Spin",
+	Default = false,
+	Callback = function(Value)
+		getgenv().bspin = Value
+        bspin()
+	end    
+})
+
+otherTab:AddToggle({
+	Name = "Auto Rebirth",
+	Default = false,
+	Callback = function(Value)
+		getgenv().rb = Value
+        rb()
 	end    
 })
 
